@@ -1,8 +1,10 @@
 class Address:
     distance = 0
-    def __init__(self, name):
+
+    def __init__(self, name, distance=None, time=None):
         self.name = name
-        self.distance
+        self.distance = distance
+        self.time = time
 
     def get_name_address(self):
         return self.name
@@ -15,3 +17,9 @@ class Address:
 
     def set_distance_address(self, distance):
         self.distance = distance
+
+    def get_time_address(self):
+        return self.time
+
+    def set_time_address(self, time):
+        self.time = time
