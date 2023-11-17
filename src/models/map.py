@@ -23,22 +23,21 @@ def obtener_coordenadas(direccion):
 
 def get_distance(address_one, address_two):
     distance = geodesic(address_one, address_two).kilometers
+    print(type(distance))
     return distance
 
 
-coord = obtener_coordenadas("Los Hongos, Tunja, Boyaca, Colombia")
-address_scholl = 5.557898, -73.35421
-location_one = address_scholl
-print("Los hongos ", coord)
-coord = obtener_coordenadas("Calle 47, Tunja, Boyaca, Colombia")
-location_two = coord
-distance = geodesic(location_one, location_two).kilometers
-print(distance)
+# coord = obtener_coordenadas("Los Hongos, Tunja, Boyaca, Colombia")
+# address_scholl = 5.557898, -73.35421
+# location_one = address_scholl
+# coord = obtener_coordenadas("Calle 47, Tunja, Boyaca, Colombia")
+# location_two = coord
+# distance = geodesic(location_one, location_two).kilometers
 
-folium.Marker(location_one, popup="Ubicación 1").add_to(mapa)
-folium.Marker(location_two, popup="Ubicación 2").add_to(mapa)
+
+# folium.Marker(location_one, popup="Ubicación 1").add_to(mapa)
+# folium.Marker(location_two, popup="Ubicación 2").add_to(mapa)
 
 
 # Guardar el mapa en un archivo HTML
-print(coord)
 mapa.save("mapa.html")
