@@ -21,12 +21,14 @@ def obtener_coordenadas(direccion):
         return None
 
 
-location_one = (5.54953, -73.35989)
-location_two = (5.55123, -73.35521)
-location_two = (5.55123, -73.38421)
+def get_distance(address_one, address_two):
+    distance = geodesic(address_one, address_two).kilometers
+    return distance
+
 
 coord = obtener_coordenadas("Los Hongos, Tunja, Boyaca, Colombia")
-location_one = coord
+address_scholl = 5.557898, -73.35421
+location_one = address_scholl
 print("Los hongos ", coord)
 coord = obtener_coordenadas("Calle 47, Tunja, Boyaca, Colombia")
 location_two = coord
