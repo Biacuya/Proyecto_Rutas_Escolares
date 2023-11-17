@@ -1,7 +1,8 @@
 class Address:
-    def __init__(self, name, distance):
+    distance = 0
+    def __init__(self, name):
         self.name = name
-        self.distance = distance
+        self.distance
 
     def get_name_address(self):
         return self.name

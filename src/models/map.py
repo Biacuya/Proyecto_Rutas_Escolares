@@ -26,6 +26,10 @@ location_two = (5.55123, -73.35521)
 location_two = (5.55123, -73.38421)
 
 coord = obtener_coordenadas("Los Hongos, Tunja, Boyaca, Colombia")
+location_one = coord
+print("Los hongos ", coord)
+coord = obtener_coordenadas("Calle 47, Tunja, Boyaca, Colombia")
+location_two = coord
 distance = geodesic(location_one, location_two).kilometers
 print(distance)
 
