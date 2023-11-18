@@ -37,12 +37,22 @@ class Direccion:
         self.tiempo = tiempo
 
 
+# Crear instancias de la clase Direccion
+direccion1 = Direccion("Direccion1", 6)
+direccion2 = Direccion("Direccion2", 3)
+direccion3 = Direccion("Direccion3", 1)
+direccion4 = Direccion("Direccion4", 4)
+direccion5 = Direccion("Direccion5", 5)
+
 # Crear un grafo completo aleatorio con 5 nodos representados por objetos Direccion
 G = nx.complete_graph(5)
 
 # Asignar objetos Direccion como nodos y atributos de tiempo como pesos de aristas
 for node in G.nodes():
-    G.nodes[node]["direccion"] = Direccion(nombre=f"Direccion{node}", tiempo=node + 1)
+    if "direccion" not in G.nodes[node]:
+        G.nodes[node]["direccion"] = Direccion(
+            nombre=f"Direccion{node}", tiempo=node + 1
+        )
 
 # Resolver el problema del Viajante Comerciante (TSP)
 tsp_tour_nodes = nx.approximation.traveling_salesman_problem(
@@ -50,19 +60,30 @@ tsp_tour_nodes = nx.approximation.traveling_salesman_problem(
 )
 
 # Obtener objetos Direccion para los nodos en la ruta óptima
-direcciones_tour = [G.nodes[node]["direccion"] for node in tsp_tour_nodes]
+direcciones_tour = [
+    G.nodes[node]["direccion"]
+    for node in tsp_tour_nodes
+    if "direccion" in G.nodes[node]
+]
 
 # Crear un nuevo grafo dirigido para representar la ruta óptima
 ruta_grafo = nx.DiGraph()
 
 # Agregar nodos y aristas a la nueva gráfica
 for i in range(len(direcciones_tour) - 1):
-    ruta_grafo.add_node(direcciones_tour[i].nombre)
-    ruta_grafo.add_node(direcciones_tour[i + 1].nombre)
+    direccion_actual = direcciones_tour[i]
+    siguiente_direccion = direcciones_tour[i + 1]
+
+    # Agregar nodo actual y siguiente nodo al grafo
+    ruta_grafo.add_node(direccion_actual.nombre, tiempo=direccion_actual.tiempo)
+    ruta_grafo.add_node(siguiente_direccion.nombre, tiempo=siguiente_direccion.tiempo)
+
+    # Agregar arista con atributos de peso al grafo
+    peso_arista = (
+        direccion_actual.tiempo
+    )  # Puedes personalizar esto según tus necesidades
     ruta_grafo.add_edge(
-        direcciones_tour[i].nombre,
-        direcciones_tour[i + 1].nombre,
-        weight=direcciones_tour[i].tiempo,
+        direccion_actual.nombre, siguiente_direccion.nombre, weight=peso_arista
     )
 
 # Visualizar el grafo de la ruta óptima
@@ -83,5 +104,5 @@ nx.draw(
 )
 labels = nx.get_edge_attributes(ruta_grafo, "weight")
 nx.draw_networkx_edge_labels(ruta_grafo, pos, edge_labels=labels)
-plt.title("Ruta Óptima")
+plt.title("Ruta Óptima con Aproximación al TSP")
 plt.show()

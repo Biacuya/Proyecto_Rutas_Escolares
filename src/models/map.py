@@ -23,7 +23,6 @@ def obtener_coordenadas(direccion):
 
 def get_distance(address_one, address_two):
     distance = geodesic(address_one, address_two).kilometers
-    print(type(distance))
     return distance
 
 
