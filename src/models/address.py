@@ -5,11 +5,13 @@ class Address:
         distance_between_address_scholl=None,
         time_list=None,
         coordinates=None,
+        dictionary_of_address=None,
     ):
         self.name = name
         self.distance_between_address_scholl = distance_between_address_scholl
         self.time_list = time_list
         self.coordinates = coordinates
+        self.dictionary_of_address = dictionary_of_address
 
     def get_name_address(self):
         return self.name
@@ -36,3 +38,9 @@ class Address:
 
     def set_coordinates(self, coordinate):
         self.coordinate = coordinate
+
+    def get_dictionary_of_address(self):
+        return self.dictionary_of_address
+
+    def set_dictionary_of_address(self, dictionary_of_address):
+        self.dictionary_of_address = dictionary_of_address

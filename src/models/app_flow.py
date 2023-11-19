@@ -48,10 +48,24 @@ class AppFlow:
                         self.list_address[count_actual_position].get_coordinates(),
                         address_coordinates.get_coordinates(),
                     )
+                    raw_time_between_address = aux / self.SPEED
+                    time_in_minutes_between_address = round(
+                        (raw_time_between_address * 60), 2
+                    )
                     count_leng_list += 1
                     dictionary_distances[
                         self.list_address[count_actual_position].get_name_address()
-                    ][address_coordinates.get_name_address()] = aux
+                    ][
+                        address_coordinates.get_name_address()
+                    ] = time_in_minutes_between_address
+                    self.list_address[count_actual_position].set_dictionary_of_address(
+                        dictionary_distances
+                    )
+                    print(
+                        self.list_address[
+                            count_actual_position
+                        ].get_dictionary_of_address()
+                    )
                     print("Metodo direcciones: ", dictionary_distances)
                 else:
                     print("Acabo y se reinicia")
@@ -74,6 +88,8 @@ class AppFlow:
                         address_name.get_name_address(),
                         self.list_distances[count],
                         self.list_time_between_scholl[count],
+                        address_name.get_coordinates(),
+                        address_name.get_dictionary_of_address(),
                     )
                     if (
                         address_name.get_distance_between_address_scholl_address()
@@ -94,7 +110,7 @@ class AppFlow:
                 aux.get_time_list_address(),
             )
 
-    def dic_test(self):
+    def dictionary_graph(self):
         graph = {"scholl": {}}
         for name_test in self.list_completed_address:
             graph["scholl"][
@@ -118,4 +134,4 @@ app.get_distance_between_addresses()
 app.calculate_time()
 app.create_completed_address()
 app.print_aux()
-app.dic_test()
+app.dictionary_graph()
