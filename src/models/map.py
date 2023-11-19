@@ -27,11 +27,10 @@ def get_distance(address_one, address_two):
 
 
 # coord = obtener_coordenadas("Los Hongos, Tunja, Boyaca, Colombia")
-# address_scholl = 5.557898, -73.35421
-# location_one = address_scholl
-# coord = obtener_coordenadas("Calle 47, Tunja, Boyaca, Colombia")
-# location_two = coord
-# distance = geodesic(location_one, location_two).kilometers
+address_scholl = 5.557898, -73.35421
+location_two = 5.51629555, -73.36856103385719
+distance = geodesic(address_scholl, location_two).kilometers
+
 
 
 # folium.Marker(location_one, popup="Ubicación 1").add_to(mapa)

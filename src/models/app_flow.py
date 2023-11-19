@@ -6,6 +6,7 @@ class AppFlow:
     list_address = []
     list_coordinates = []
     list_distances = []
+    list_distances_between_addresses = []
     list_completed_address = []
     list_time_between_scholl = []
     address = ""
@@ -21,12 +22,41 @@ class AppFlow:
             self.list_coordinates.append(
                 obtener_coordenadas(address_name.get_name_address())
             )
+            address_name.set_coordinates(
+                obtener_coordenadas(address_name.get_name_address())
+            )
             print(self.list_coordinates)
 
-    def get_distance_between_addresses(self):
+    def get_distance_between_addresses_and_scholl_address(self):
         app.get_coordinates()
         for coordinates in self.list_coordinates:
             self.list_distances.append(get_distance(self.address_scholl, coordinates))
+
+    def get_distance_between_addresses(self):
+        count_leng_list = 0
+        count_actual_position = 0
+        while count_actual_position < len(self.list_address):
+            print(f"Count posición actual:{count_actual_position}")
+            dictionary_distances = {
+                self.list_address[count_actual_position].get_name_address(): {}
+            }
+            for address_coordinates in self.list_address:
+                print(f"Count: {count_actual_position}")
+                print(f"Count2: {count_leng_list}")
+                if count_leng_list < len(self.list_address):
+                    aux = get_distance(
+                        self.list_address[count_actual_position].get_coordinates(),
+                        address_coordinates.get_coordinates(),
+                    )
+                    count_leng_list += 1
+                    dictionary_distances[
+                        self.list_address[count_actual_position].get_name_address()
+                    ][address_coordinates.get_name_address()] = aux
+                    print("Metodo direcciones: ", dictionary_distances)
+                else:
+                    print("Acabo y se reinicia")
+                    count_leng_list = 0
+            count_actual_position += 1
 
     def calculate_time(self):
         for distance in self.list_distances:
@@ -39,13 +69,16 @@ class AppFlow:
         count = 0
         for j, address_time in enumerate(self.list_time_between_scholl):
             for k, address_name in enumerate(self.list_address):
-                if address_name.get_distance_address() == None:
+                if address_name.get_distance_between_address_scholl_address() == None:
                     new_address = Address(
                         address_name.get_name_address(),
                         self.list_distances[count],
                         self.list_time_between_scholl[count],
                     )
-                    if address_name.get_distance_address() == None:
+                    if (
+                        address_name.get_distance_between_address_scholl_address()
+                        == None
+                    ):
                         del self.list_address[k]
                     self.list_address.append(new_address)
                     self.list_completed_address.append(new_address)
@@ -57,9 +90,17 @@ class AppFlow:
         for aux in self.list_completed_address:
             print(
                 aux.get_name_address(),
-                aux.get_distance_address(),
+                aux.get_distance_between_address_scholl_address(),
                 aux.get_time_list_address(),
             )
+
+    def dic_test(self):
+        graph = {"scholl": {}}
+        for name_test in self.list_completed_address:
+            graph["scholl"][
+                name_test.get_name_address()
+            ] = name_test.get_time_list_address()
+        print(graph)
 
 
 app = AppFlow()
@@ -69,7 +110,12 @@ app.create_address("Calle 17, Tunja, Boyaca, Colombia")
 app.create_address("Calle 27, Tunja, Boyaca, Colombia")
 # name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
 app.create_address("Calle 13, Tunja, Boyaca, Colombia")
+
+app.create_address("Los Hongos, Tunja, Boyaca, Colombia")
+# app.create_address("Centro Comercial Unicentro Tunja, Tunja, Boyaca, Colombia")
+app.get_distance_between_addresses_and_scholl_address()
 app.get_distance_between_addresses()
 app.calculate_time()
 app.create_completed_address()
 app.print_aux()
+app.dic_test()
