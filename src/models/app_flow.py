@@ -29,9 +29,10 @@ class AppFlow:
             print(self.list_coordinates)
 
     def get_distance_between_addresses_and_scholl_address(self, address_scholl):
-        app.get_coordinates()
+        self.get_coordinates()
         for coordinates in self.list_coordinates:
-            self.list_distances.append(get_distance(address_scholl, coordinates))
+            coordinates_scholl = obtener_coordenadas(address_scholl)
+            self.list_distances.append(get_distance(coordinates_scholl, coordinates))
 
     def get_distance_between_addresses(self):
         count_leng_list = 0
@@ -136,7 +137,8 @@ class AppFlow:
 
     def creation_tsp(self, graph):
         route = tsp(graph)
-        print(f"ruta optima{route}")
+        return route
+        # print(f"ruta optima{route}")
 
 
 # app = AppFlow()
