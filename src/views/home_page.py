@@ -16,13 +16,25 @@ imagen = tk.PhotoImage(file="School-bus.png")
 
 Label(top, image=imagen).place(x=0, y=0)
 
-Label(top, text="Optimizacion de rutas escolares", font=("Comic Sans MS", 20)).place(x=190, y=40)
+Label(top, text="Optimizacion de rutas escolares", font=("Comic Sans MS", 20)).place(
+    x=190, y=40
+)
 
-generate_new_rout = Button(top, text="Generar nueva ruta", command="Crear_nueva_ruta", activebackground="#FFD8C1")
+generate_new_rout = Button(
+    top,
+    text="Generar nueva ruta",
+    command="Crear_nueva_ruta",
+    activebackground="#FFD8C1",
+)
 
 generate_new_rout.place(x=600, y=45)
 
-add_address = Button(top, text="Agregar direccion", command="Agregar_direccion", activebackground="#FFD8C1")
+add_address = Button(
+    top,
+    text="Agregar direccion",
+    command="Agregar_direccion",
+    activebackground="#FFD8C1",
+)
 
 add_address.place(x=750, y=45)
 

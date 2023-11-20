@@ -32,7 +32,6 @@ location_two = 5.51629555, -73.36856103385719
 distance = geodesic(address_scholl, location_two).kilometers
 
 
-
 # folium.Marker(location_one, popup="Ubicación 1").add_to(mapa)
 # folium.Marker(location_two, popup="Ubicación 2").add_to(mapa)
 

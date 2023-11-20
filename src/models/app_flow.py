@@ -148,7 +148,6 @@ app.create_address("Calle 27, Tunja, Boyaca, Colombia")
 app.create_address("Calle 13, Tunja, Boyaca, Colombia")
 
 app.create_address("Los Hongos, Tunja, Boyaca, Colombia")
-# app.create_address("Centro Comercial Unicentro Tunja, Tunja, Boyaca, Colombia")
 app.get_distance_between_addresses_and_scholl_address()
 app.calculate_time()
 app.get_distance_between_addresses()
