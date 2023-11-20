@@ -11,7 +11,7 @@ class AppFlow:
     list_completed_address = []
     list_time_between_scholl = []
     address = ""
-    address_scholl = 5.557898, -73.35421
+    # address_scholl = 0, 0
     SPEED = 30  # Km/h
 
     def create_address(self, name):
@@ -28,10 +28,10 @@ class AppFlow:
             )
             print(self.list_coordinates)
 
-    def get_distance_between_addresses_and_scholl_address(self):
+    def get_distance_between_addresses_and_scholl_address(self, address_scholl):
         app.get_coordinates()
         for coordinates in self.list_coordinates:
-            self.list_distances.append(get_distance(self.address_scholl, coordinates))
+            self.list_distances.append(get_distance(address_scholl, coordinates))
 
     def get_distance_between_addresses(self):
         count_leng_list = 0
@@ -139,19 +139,19 @@ class AppFlow:
         print(f"ruta optima{route}")
 
 
-app = AppFlow()
-# name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
-app.create_address("Calle 17, Tunja, Boyaca, Colombia")
-# name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
-app.create_address("Calle 27, Tunja, Boyaca, Colombia")
-# name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
-app.create_address("Calle 13, Tunja, Boyaca, Colombia")
+# app = AppFlow()
+# # name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
+# app.create_address("Calle 17, Tunja, Boyaca, Colombia")
+# # name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
+# app.create_address("Calle 27, Tunja, Boyaca, Colombia")
+# # name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"
+# app.create_address("Calle 13, Tunja, Boyaca, Colombia")
 
-app.create_address("Los Hongos, Tunja, Boyaca, Colombia")
-app.get_distance_between_addresses_and_scholl_address()
-app.calculate_time()
-app.get_distance_between_addresses()
-app.create_completed_address()
-app.print_aux()
-# app.dictionary_graph()
-app.creation_tsp(app.dictionary_graph())
+# app.create_address("Los Hongos, Tunja, Boyaca, Colombia")
+# app.get_distance_between_addresses_and_scholl_address()
+# app.calculate_time()
+# app.get_distance_between_addresses()
+# app.create_completed_address()
+# app.print_aux()
+# # app.dictionary_graph()
+# app.creation_tsp(app.dictionary_graph())
