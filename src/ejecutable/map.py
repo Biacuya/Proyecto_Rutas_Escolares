@@ -10,13 +10,13 @@ mapa = folium.Map(location=[latitude, longitude], zoom_start=14)
 # Agregar marcadores
 
 
-def obtener_coordenadas(direccion):
+def obtain_coordinates(address):
     geolocalizador = Nominatim(
         user_agent="mi_aplicacion"
     )  # Reemplaza "mi_aplicacion" con un nombre significativo para tu aplicación
-    ubicacion = geolocalizador.geocode(direccion)
-    if ubicacion:
-        return (ubicacion.latitude, ubicacion.longitude)
+    ubication = geolocalizador.geocode(address)
+    if ubication:
+        return (ubication.latitude, ubication.longitude)
     else:
         return None
 
@@ -26,7 +26,7 @@ def get_distance(address_one, address_two):
     return distance
 
 
-# coord = obtener_coordenadas("Los Hongos, Tunja, Boyaca, Colombia")
+# coord = obtain_coordinates("Los Hongos, Tunja, Boyaca, Colombia")
 address_scholl = 5.557898, -73.35421
 location_two = 5.51629555, -73.36856103385719
 distance = geodesic(address_scholl, location_two).kilometers
