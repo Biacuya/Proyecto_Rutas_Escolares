@@ -126,7 +126,7 @@ class AppGUI(tk.Tk):
     def add_address(self):
         address = self.address_entry.get()
         if self.school_address == "":
-            messagebox.showwarning("Error", "No se ha agreado una escuela")
+            messagebox.showwarning("Error", "No se ha agregado una escuela")
         elif address == "":
             messagebox.showwarning("Error", "Debes ingresar un nombre o una dirección")
 
@@ -144,20 +144,21 @@ class AppGUI(tk.Tk):
                     messagebox.showinfo("Éxito", f"Dirección: '{address}' agregada.")
 
     def optimize_route(self):
-        messagebox.showinfo("Notificación", "Generando ruta optima")
+        messagebox.showinfo("Notificación", "Generando ruta óptima")
         self.add_address_scholl()
         self.app.calculate_time()
         self.app.get_distance_between_addresses()
         self.app.create_completed_address()
-        result = self.app.creation_tsp(self.app.dictionary_graph())
-        print(f"Ruta Optima: {result}")
+        result_2 = self.app.creation_tsp_nearest_neighbor(
+            self.app.dictionary_graph(), node=None
+        )
         self.result_text.delete(1.0, tk.END)
-        self.result_text.insert(tk.END, result)
+        self.result_text.insert(tk.END, result_2)
 
         # self.draw_tsp_graph(result)
-        messagebox.showinfo("Notificación", "Ruta optima generada")
+        messagebox.showinfo("Notificación", "Ruta óptima generada")
         # self.address_scholl_entry.config(state=tk.NORMAL)
-        self.show_tsp_graph(result)
+        self.show_tsp_graph(result_2)
         self.app.reset_values()
         self.address_scholl_entry.config(state=tk.NORMAL)
         self.address_scholl_entry.insert(0, "")

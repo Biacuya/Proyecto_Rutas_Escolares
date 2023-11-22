@@ -1,6 +1,6 @@
 from address import Address
 from map import obtain_coordinates, get_distance
-from graph import tsp
+from graph import tsp, nearest_neighbor
 
 
 class AppFlow:
@@ -25,7 +25,7 @@ class AppFlow:
             address_name.set_coordinates(
                 obtain_coordinates(address_name.get_name_address())
             )
-            print(self.list_coordinates)
+           
 
     def get_distance_between_addresses_and_school_address(self, address_school):
         self.get_coordinates()
@@ -68,7 +68,7 @@ class AppFlow:
 
                         # print("Metodo direcciones: ", dictionary_distances)
                     else:
-                        print("Acabo y se reinicia")
+                        #print("Acabo y se reinicia")
                         count_leng_list = 0
             count_actual_position += 1
 
@@ -98,8 +98,8 @@ class AppFlow:
                     self.list_address.append(new_address)
                     self.list_completed_address.append(new_address)
                     count += 1
-                else:
-                    print("Ya tiene una distancia", address_name.get_name_address())
+                # else:
+                #     print("Ya tiene una distancia", address_name.get_name_address())
 
     def print_aux(self):
         for aux in self.list_completed_address:
@@ -130,6 +130,10 @@ class AppFlow:
         route = tsp(graph)
         return route
         # print(f"ruta optima{route}")
+
+    def creation_tsp_nearest_neighbor(self, graph, node=None):
+        route = nearest_neighbor(graph, node)
+        return route
 
     def reset_values(self):
         self.list_completed_address.clear()
