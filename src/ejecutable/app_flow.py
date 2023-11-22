@@ -131,6 +131,22 @@ class AppFlow:
         return route
         # print(f"ruta optima{route}")
 
+    def reset_values(self):
+        self.list_completed_address.clear()
+        self.list_address = []
+        self.list_coordinates = []
+        self.list_distances = []
+        self.list_distances_between_addresses = []
+        self.list_completed_address = []
+        self.list_time_between_school = []
+
+    # reset_address.set_name_address("")
+    # reset_address.set_distance_between_address_school_address(None)
+    # reset_address.set_list_of_times_address(None)
+    # reset_address.set_coordinates(None)
+    # reset_address.set_address_dictionary(None)
+    # self.get_distance_between_addresses_and_school_address(None)
+
 
 # app = AppFlow()
 # # # name = input("Ingresa una dirección ") + ", Tunja, Boyaca, Colombia"

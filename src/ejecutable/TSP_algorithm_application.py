@@ -158,6 +158,9 @@ class AppGUI(tk.Tk):
         messagebox.showinfo("Notificación", "Ruta optima generada")
         # self.address_scholl_entry.config(state=tk.NORMAL)
         self.show_tsp_graph(result)
+        self.app.reset_values()
+        self.address_scholl_entry.config(state=tk.NORMAL)
+        self.address_scholl_entry.insert(0, "")
 
     def draw_tsp_graph(self, tsp_result):
         G = nx.Graph()
